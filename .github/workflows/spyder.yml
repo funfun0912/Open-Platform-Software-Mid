@@ -6,10 +6,16 @@ on:
   # 每天凌晨12點自動觸發
   schedule:
     - cron: '0 0 * * *'
+  push:
+    branches:
+      - main
 
 jobs:
   run-scrapers:
     runs-on: ubuntu-latest
+
+     permissions:
+      contents: write # 這將授予 GitHub Actions bot 寫入權限
     
     steps:
     # 檢出程式碼
@@ -37,14 +43,25 @@ jobs:
       run: python static.py
 
       # 設定 Git
-    - name: Set up Git
+    #- name: Set up Git
+    #  run: |
+    #    git config --global user.name ''
+    #    git config --global user.email ''
+
+     - name: Commit and push changes
       run: |
         git config --global user.name 'funfun0912'
         git config --global user.email 'chiang2003lin@gmail.com'
+        git add .
+        git commit -m 'Update data'
+        git push
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
 
     # 提交生成的檔案並推送到儲存庫
-    - name: Commit and push the results
-      run: |
-        git add .
-        git commit -m "Add API and Static Scraper results"
-        git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }} HEAD:main
+    #- name: Commit and push the results
+    #  run: |
+    #    git add .
+    #    git commit -m "Add API and Static Scraper results"
+    #    git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }} HEAD:main
