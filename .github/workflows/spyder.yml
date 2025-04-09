@@ -36,11 +36,15 @@ jobs:
     - name: Run Static Scraper
       run: python static.py
 
+      # 設定 Git
+    - name: Set up Git
+      run: |
+        git config --global user.name 'github-actions'
+        git config --global user.email 'github-actions@users.noreply.github.com'
+
     # 提交生成的檔案並推送到儲存庫
     - name: Commit and push the results
       run: |
-        git config --global user.name "funfun0912"
-        git config --global user.email "chiang2003lin@gmail.com"
         git add .
         git commit -m "Add API and Static Scraper results"
         git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }} HEAD:main
