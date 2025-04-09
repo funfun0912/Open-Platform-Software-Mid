@@ -39,8 +39,8 @@ jobs:
     # 提交生成的檔案並推送到儲存庫
     - name: Commit and push the results
       run: |
-        git config --global user.name "GitHub Actions"
-        git config --global user.email "actions@github.com"
+        git config --global user.name "funfun0912"
+        git config --global user.email "chiang2003lin@gmail.com"
         git add .
         git commit -m "Add API and Static Scraper results"
         git push
