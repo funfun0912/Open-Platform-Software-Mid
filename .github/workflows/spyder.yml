@@ -43,4 +43,4 @@ jobs:
         git config --global user.email "chiang2003lin@gmail.com"
         git add .
         git commit -m "Add API and Static Scraper results"
-        git push
+        git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }} HEAD:main
