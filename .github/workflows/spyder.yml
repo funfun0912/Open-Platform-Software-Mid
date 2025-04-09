@@ -1,0 +1,30 @@
+name: Run Python Scrapers
+
+on:
+  schedule:
+    # 設定為每天凌晨 1 點執行
+    - cron: '0 1 * * *'
+  workflow_dispatch: # 允許手動觸發 workflow
+
+jobs:
+  run-scrapers:
+    runs-on: ubuntu-latest  # 使用最新的 Ubuntu 作業系統
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2  # 檢出你的程式碼
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.8'  # 這裡可以設置 Python 版本
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt  # 安裝你的依賴
+
+      - name: Run API Scraper
+        run: python api.py  # 執行 API 爬蟲
+
+      - name: Run Static Scraper
+        run: python static.py  # 執行靜態爬蟲
