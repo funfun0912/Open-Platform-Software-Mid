@@ -39,8 +39,8 @@ jobs:
       # 設定 Git
     - name: Set up Git
       run: |
-        git config --global user.name 'github-actions'
-        git config --global user.email 'github-actions@users.noreply.github.com'
+        git config --global user.name 'funfun0912'
+        git config --global user.email 'chiang2003lin@gmail.com'
 
     # 提交生成的檔案並推送到儲存庫
     - name: Commit and push the results
