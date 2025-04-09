@@ -6,14 +6,13 @@ on:
   # 每天凌晨12點自動觸發
   schedule:
     - cron: '0 0 * * *'
-  push:
-    branches:
-      - main
+  #push:
+  #  branches:
+  #    - main
 
 jobs:
   run-scrapers:
     runs-on: ubuntu-latest
-
     permissions:
       contents: write # 這將授予 GitHub Actions bot 寫入權限
     
@@ -43,7 +42,6 @@ jobs:
       run: python static.py
 
 
-
     - name: Commit and push changes
       run: |
         git config --global user.name 'funfun0912'
@@ -53,6 +51,3 @@ jobs:
         git push
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-
-  
